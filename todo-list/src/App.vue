@@ -1,20 +1,25 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <input type="text" v-model="title"/>
+    <button @click="list.push(title)">Add</button>
+    <div v-for="(item, index) in list" :key="index">
+      <TodoListItem :title="item"></TodoListItem>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
-
+import TodoListItem from "./components/TodoListItem.vue";
 @Component({
-  components: {
-    HelloWorld,
-  },
+  components:{
+    TodoListItem
+  }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  private item: string = ""; 
+  private list: string[] = [];
+}
 </script>
 
 <style lang="scss">
